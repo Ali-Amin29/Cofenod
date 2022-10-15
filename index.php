@@ -1,5 +1,5 @@
 <?php 
+echo 'amr'
 
-aaa;
 
 ?>
