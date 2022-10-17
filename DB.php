@@ -27,7 +27,7 @@ class DB
         $query = "SELECT * FROM $table WHERE id=$id";
         $sql = DB::$connection->prepare($query);
         $sql->execute();
-        return $sql->fetch(PDO::FETCH_ASSOC);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     static public function update($table, $cond, $data)
     {

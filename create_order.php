@@ -3,7 +3,10 @@ require('DB.php');
 DB::connect('mysql', 'localhost', 'cafe_node', 'root', '');
 $users = DB::getAll('users');
 $products = DB::getAll('product');
-// var_dump($products[0]['type'])
+session_start();
+
+
+// session_unset(); 
 
 ?>
 
@@ -61,87 +64,105 @@ $products = DB::getAll('product');
         </div>
     </nav>
 
-
-    <div>
-        <h2>Choose User</h2>
-        <div class="dropdown m-3">
-            <input class="dropdown-toggle" type="text" data-bs-toggle="dropdown" value="Choose User" id="input">
-            <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
-            <select class="dropdown-menu" id="users">
-                <?php foreach ($users as $user) { ?>
-                    <option class="dropdown-item" value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
-                <?php  } ?>
-            </select>
-            <!-- </button> -->
+    <div class="row">
+        <div class="col-3">
+            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+                <?php if ($_SESSION) { ?>
+                    <?php foreach ($products as $order) { ?>
+                        <?php foreach ($_SESSION["id"] as $id) { ?>
+                            <?php if ($order['ID'] == $id) {  ?>
+                                <div class="m-2 p-2 text-center">
+                                    <h2><?php echo $order['name'] ?></h2>
+                                    <h2><?php echo $order['type'] ?></h2>
+                                    <p>Price: <?php echo $order['price'] ?>L.E</p>
+                                    <input class="form-control w-50" id="<?php echo $id ?>" value="0" name="quantity" type="number">
+                                </div>
+                <?php }
+                        }
+                    }
+                } ?>
+                <div class="text-center">
+                    <button class="btn btn-success" id="butt"> Submit Order</button>
+                </div>
+            </nav>
         </div>
-    </div>
-    <br>
-    <br>
 
-    <h1 style="color:#003f63;display: inline-block; ">Our Products</h1>
 
-    <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action active" id="list-drinks-list" data-bs-toggle="list" href="#drinks">Drinks</a>
-        <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#Dessert">Dessert</a>
-        <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#Snacks">Snacks</a>
-    </div>
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="drinks" role="tabpanel" aria-labelledby="list-home-list">
-            <div class="container">
-                <div class="row ">
-                    <?php foreach ($products as $product) {
-                        if ($product['type'] == 'drink') { ?>
-                            <div class="col-3 border shadow text-center">
-                                <img src="<?php echo $product['image']; ?>" alt="">
-                                <h2><?php echo $product['name'] ?></h2>
-                                <h2><?php echo $product['type'] ?></h2>
-                                <p>Price: <?php echo $product['price'] ?>L.E</p>
-                            </div>
-                    <?php }
-                    } ?>
+        <div class="col-9">
+            <div class="dropdown m-3">
+                <h2>Choose User</h2>
+                <input class="dropdown-toggle" type="text" data-bs-toggle="dropdown" value="Choose User" id="input">
+                <select class="dropdown-menu" id="users">
+                    <?php foreach ($users as $user) { ?>
+                        <option class="dropdown-item" value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
+                    <?php  } ?>
+                </select>
+            </div>
+
+            <br>
+            <br>
+
+            <h1 style="color:#003f63;display: inline-block; ">Our Products</h1>
+            <div class="list-group d-flex flex-row mb-3" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active w-25" id="list-drinks-list" data-bs-toggle="list" href="#drinks">Drinks</a>
+                <a class="list-group-item list-group-item-action w-25" id="list-profile-list" data-bs-toggle="list" href="#Dessert">Dessert</a>
+                <a class="list-group-item list-group-item-action w-25" id="list-messages-list" data-bs-toggle="list" href="#Snacks">Snacks</a>
+            </div>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="drinks" role="tabpanel" aria-labelledby="list-home-list">
+                    <div class="container">
+                        <div class="row ">
+                            <?php foreach ($products as $product) {
+                                if ($product['type'] == 'drink') { ?>
+                                    <div class="col-3 m-2 p-2 border shadow text-center">
+                                        <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
+                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['type'] ?></h2>
+                                        <p>Price: <?php echo $product['price'] ?>L.E</p>
+                                        <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
+                                    </div>
+                            <?php }
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Dessert" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="container">
+                        <div class="row ">
+                            <?php foreach ($products as $product) {
+                                if ($product['type'] == 'dessert') { ?>
+                                    <div class="col-3 m-2 p-2 border shadow text-center">
+                                        <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
+                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['type'] ?></h2>
+                                        <p>Price: <?php echo $product['price'] ?>L.E</p>
+                                        <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
+                                    </div>
+                            <?php }
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Snacks" role="tabpanel" aria-labelledby="list-messages-list">
+                    <div class="container">
+                        <div class="row ">
+                            <?php foreach ($products as $product) {
+                                if ($product['type'] == 'snacks') { ?>
+                                    <div class="col-3 m-2 p-2 border shadow text-center">
+                                        <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
+                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['type'] ?></h2>
+                                        <p>Price: <?php echo $product['price'] ?>L.E</p>
+                                        <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
+                                    </div>
+                            <?php }
+                            } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="Dessert" role="tabpanel" aria-labelledby="list-profile-list">
-            <div class="container">
-                <div class="row ">
-                    <?php foreach ($products as $product) {
-                        if ($product['type'] == 'dessert') { ?>
-                            <div class="col-3 border shadow text-center">
-                                <img src="<?php echo $product['image']; ?>" alt="">
-                                <h2><?php echo $product['name'] ?></h2>
-                                <h2><?php echo $product['type'] ?></h2>
-                                <p>Price: <?php echo $product['price'] ?>L.E</p>
-                            </div>
-                    <?php }
-                    } ?>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="Snacks" role="tabpanel" aria-labelledby="list-messages-list">
-            <div class="container">
-                <div class="row ">
-                    <?php foreach ($products as $product) {
-                        if ($product['type'] == 'snacks') { ?>
-                            <div class="col-3 border shadow text-center">
-                                <img src="<?php echo $product['image']; ?>" alt="">
-                                <h2><?php echo $product['name'] ?></h2>
-                                <h2><?php echo $product['type'] ?></h2>
-                                <p>Price: <?php echo $product['price'] ?>L.E</p>
-                            </div>
-                    <?php }
-                    } ?>
-                </div>
-            </div>
-        </div>
     </div>
-
-
-
-
-
-
-
 
 
     <!-- JavaScript Bundle with Popper -->
@@ -150,12 +171,22 @@ $products = DB::getAll('product');
     <script>
         var input = document.getElementById('input');
         var select = document.getElementById('users');
-        console.log(input.value)
-        console.log(select.value)
+        var butt = document.getElementById('butt');
+
         select.onchange = function() {
-            input.value = select.value
-            console.log(input.value)
-            console.log(select.value)
+            input.value = select.value;
+        }
+
+
+        <?php foreach ($_SESSION["id"] as $id) { ?>
+            var a<?php echo $id ?> = document.getElementById(<?php echo $id ?>);
+            console.log(a<?php echo $id ?>.value)
+
+        <?php } ?>
+        butt.onclick = function() {
+            <?php foreach ($_SESSION["id"] as $id) { ?>
+                console.log(a<?php echo $id ?>.value)
+            <?php } ?>
         }
     </script>
 </body>
