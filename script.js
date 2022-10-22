@@ -131,8 +131,3 @@ room.oninput=(e)=>{
         formFile.className="form-control is-valid"
     }
 }
-
-
-
-
-
