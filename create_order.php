@@ -2,12 +2,11 @@
 require('DB.php');
 DB::connect('mysql', 'localhost', 'cafe_node', 'root', '');
 $users = DB::getAll('users');
-$products = DB::getAll('product');
+$products = DB::getAll('products');
 session_start();
-
+$orders = DB::getAll('orders');
 
 // session_unset(); 
-
 ?>
 
 
@@ -67,23 +66,36 @@ session_start();
     <div class="row">
         <div class="col-3">
             <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
-                <?php if ($_SESSION) { ?>
-                    <?php foreach ($products as $order) { ?>
-                        <?php foreach ($_SESSION["id"] as $id) { ?>
-                            <?php if ($order['ID'] == $id) {  ?>
-                                <div class="m-2 p-2 text-center">
-                                    <h2><?php echo $order['name'] ?></h2>
-                                    <h2><?php echo $order['type'] ?></h2>
-                                    <p>Price: <?php echo $order['price'] ?>L.E</p>
-                                    <input class="form-control w-50" id="<?php echo $id ?>" value="0" name="quantity" type="number">
-                                </div>
-                <?php }
+                <form action="add_product.php" method="post">
+                    <?php if ($_SESSION) { ?>
+                        <?php foreach ($products as $product) { ?>
+                            <?php foreach ($_SESSION["id"] as $id) { ?>
+                                <?php if ($product['ID'] == $id) {  ?>
+                                    <div class="m-2 p-2 text-center">
+                                        <h2><?php echo $product['name_prod'] ?></h2>
+                                        <h2><?php echo $product['type'] ?></h2>
+                                        <p>Price: <?php echo $product['price'] ?>L.E</p>
+                                        <input type="text" hidden value="<?php echo $product['price'] ?>" id="price">
+                                        <input class="form-control w-50 totalquantity" value="1" id="<?php echo $product['price'] ?>" name="quantity_<?php echo $id ?>" type="number">
+                                        <a href="add_product.php?id=<?php echo $id ?>">
+                                            <img src="images/delete.png" alt="">
+                                        </a>
+                                    </div>
+                        <?php
+                                }
+                            }
                         }
-                    }
-                } ?>
-                <div class="text-center">
-                    <button class="btn btn-success" id="butt"> Submit Order</button>
-                </div>
+                    } else { ?>
+                        <div class="m-2 p-2 text-center">
+                            <h2>No Orders Yet :(</h2>
+                        </div>
+                    <?php } ?>
+
+                    <h2 id="totalprice"></h2>
+                    <div class="text-center">
+                        <button class="btn btn-success" id="butt"> Submit Order</button>
+                    </div>
+                </form>
             </nav>
         </div>
 
@@ -91,10 +103,11 @@ session_start();
         <div class="col-9">
             <div class="dropdown m-3">
                 <h2>Choose User</h2>
-                <input class="dropdown-toggle" type="text" data-bs-toggle="dropdown" value="Choose User" id="input">
-                <select class="dropdown-menu" id="users">
+                <input class="dropdown-toggle" type="text" hidden data-bs-toggle="dropdown" id="input" placeholder="Choose User">
+                <select class="dropdown-menu d-block" id="users">
+                    <option value="">Choose User</option>
                     <?php foreach ($users as $user) { ?>
-                        <option class="dropdown-item" value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
+                        <option class="dropdown-item" value="<?php echo $user['ID']; ?>"><?php echo $user['name']; ?></option>
                     <?php  } ?>
                 </select>
             </div>
@@ -113,10 +126,10 @@ session_start();
                     <div class="container">
                         <div class="row ">
                             <?php foreach ($products as $product) {
-                                if ($product['type'] == 'drink') { ?>
+                                if ($product['type'] == 'drinks') { ?>
                                     <div class="col-3 m-2 p-2 border shadow text-center">
                                         <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
-                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['name_prod'] ?></h2>
                                         <h2><?php echo $product['type'] ?></h2>
                                         <p>Price: <?php echo $product['price'] ?>L.E</p>
                                         <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
@@ -133,7 +146,7 @@ session_start();
                                 if ($product['type'] == 'dessert') { ?>
                                     <div class="col-3 m-2 p-2 border shadow text-center">
                                         <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
-                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['name_prod'] ?></h2>
                                         <h2><?php echo $product['type'] ?></h2>
                                         <p>Price: <?php echo $product['price'] ?>L.E</p>
                                         <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
@@ -150,7 +163,7 @@ session_start();
                                 if ($product['type'] == 'snacks') { ?>
                                     <div class="col-3 m-2 p-2 border shadow text-center">
                                         <img src="images/<?php echo $product['image']; ?>" width="200px" alt="">
-                                        <h2><?php echo $product['name'] ?></h2>
+                                        <h2><?php echo $product['name_prod'] ?></h2>
                                         <h2><?php echo $product['type'] ?></h2>
                                         <p>Price: <?php echo $product['price'] ?>L.E</p>
                                         <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary"> Add</button></a>
@@ -172,21 +185,39 @@ session_start();
         var input = document.getElementById('input');
         var select = document.getElementById('users');
         var butt = document.getElementById('butt');
+        var totalprice = document.getElementById('totalprice');
+        var totalquantity = document.querySelectorAll('.totalquantity');
+        var price = document.querySelectorAll('#price');
+
+        totalquantity.onmouseover = function() {
+            for (let i = 0; i < totalquantity.length; i++) {
+                console.log('asdasd');
+                // console.log(totalquantity[i].value);
+                // console.log(price[i].value);
+                totalprice.innerHTML += totalquantity[i].value * price[i].value
+                console.log( totalprice.value);
+            }
+
+            // for (let i = 0; i < totalquantity.length; i++) {
+            //     var total = totalquantity[i]['id']
+
+            //     var value = totalquantity[i]['value']
+            //     console.log(value);
+
+            // }
+            // console.log(quantity.value * price.value);
+
+        }
+        // totalprice.value = price.value * quantity.value
+
+
+
+        // document.cookie += price.value
+
 
         select.onchange = function() {
-            input.value = select.value;
-        }
-
-
-        <?php foreach ($_SESSION["id"] as $id) { ?>
-            var a<?php echo $id ?> = document.getElementById(<?php echo $id ?>);
-            console.log(a<?php echo $id ?>.value)
-
-        <?php } ?>
-        butt.onclick = function() {
-            <?php foreach ($_SESSION["id"] as $id) { ?>
-                console.log(a<?php echo $id ?>.value)
-            <?php } ?>
+            input.value = select.value
+            document.cookie = "user_id=" + input.value
         }
     </script>
 </body>

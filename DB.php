@@ -65,4 +65,44 @@ class DB
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
+    static public function join($required, $table, $conditions)
+    {
+        $query = "SELECT $required";
+        // foreach ($required as $key => $value) {
+        //     $query .= $key.".".$value.",";
+        // };
+        // $query = rtrim($query, ',');
+        $query .= " FROM ";
+        foreach ($table as $value) {
+            $query .= $value . ",";
+        }
+        // echo $query;
+        $query = rtrim($query, ',');
+        $query .= " WHERE ";
+        foreach ($conditions as $key => $value) {
+            if (str_contains($key, 'ID')) {
+                $query .= $key . "=" . $value . " and ";
+            } else {
+                $query .= $key . "=" . "'$value'" . " and ";
+            }
+        }
+        $query = substr($query, 0, strlen($query) - 4);
+        // echo $query;
+        $sql =  DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    static public function getReq($column, $table, $key, $value2)
+    {
+        $query = "SELECT ";
+        foreach ($column  as $value) {
+         $query .= $value . ",";
+        }
+        $query = rtrim($query, ',');
+        $query .= " FROM $table WHERE $key='$value2'";
+        // echo $query;
+        $sql =  DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
