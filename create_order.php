@@ -22,7 +22,7 @@ $orders = DB::getAll('orders');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
-<body>
+<body onload="load()">
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -77,9 +77,9 @@ $orders = DB::getAll('orders');
                                         <p>Price: <?php echo $product['price'] ?>L.E</p>
                                         <input type="text" hidden value="<?php echo $product['price'] ?>" id="price">
                                         <input class="form-control w-50 totalquantity" value="1" id="<?php echo $product['price'] ?>" name="quantity_<?php echo $id ?>" type="number">
-                                        <a href="add_product.php?id=<?php echo $id ?>">
-                                            <img src="images/delete.png" alt="">
-                                        </a>
+                                        <!-- <a href="add_product.php?id=<?php echo $id ?>"> -->
+                                        <img id="img" src="images/delete.png" alt="">
+                                        <!-- </a> -->
                                     </div>
                         <?php
                                 }
@@ -182,6 +182,7 @@ $orders = DB::getAll('orders');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
     <script>
+        var images = document.getElementById('img');
         var input = document.getElementById('input');
         var select = document.getElementById('users');
         var butt = document.getElementById('butt');
@@ -189,36 +190,40 @@ $orders = DB::getAll('orders');
         var totalquantity = document.querySelectorAll('.totalquantity');
         var price = document.querySelectorAll('#price');
 
-        totalquantity.onmouseover = function() {
+
+       const load = function() {
+            let sum = 0;
             for (let i = 0; i < totalquantity.length; i++) {
-                console.log('asdasd');
-                // console.log(totalquantity[i].value);
-                // console.log(price[i].value);
-                totalprice.innerHTML += totalquantity[i].value * price[i].value
-                console.log( totalprice.value);
+                const arr = [];
+                totalprice1 = Number(totalquantity[i].value) * Number(price[i].value)
+                arr.push(totalprice1)
+                for (let index = 0; index < arr.length; index++) {
+                    sum += arr[index];
+                }
             }
-
-            // for (let i = 0; i < totalquantity.length; i++) {
-            //     var total = totalquantity[i]['id']
-
-            //     var value = totalquantity[i]['value']
-            //     console.log(value);
-
-            // }
-            // console.log(quantity.value * price.value);
-
+            totalprice.innerHTML = sum;
         }
-        // totalprice.value = price.value * quantity.value
 
-
-
-        // document.cookie += price.value
-
+        for (let j = 0; j < totalquantity.length; j++) {
+            totalquantity[j].oninput = function() {
+                let sum = 0;
+                for (let i = 0; i < totalquantity.length; i++) {
+                    const arr = [];
+                    totalprice1 = Number(totalquantity[i].value) * Number(price[i].value)
+                    arr.push(totalprice1)
+                    for (let index = 0; index < arr.length; index++) {
+                        sum += arr[index];
+                    }
+                }
+                totalprice.innerHTML = sum;
+            }
+        }
 
         select.onchange = function() {
             input.value = select.value
             document.cookie = "user_id=" + input.value
         }
+
     </script>
 </body>
 
