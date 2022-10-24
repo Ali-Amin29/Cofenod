@@ -47,7 +47,7 @@ class DB
         }
         $query = substr($query, 0, strlen($query) - 4);
         
-        echo $query;
+        // echo $query;
         $sql =  DB::$connection->prepare($query);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -105,7 +105,7 @@ if (str_contains($key, 'ID')) {
         $col = implode(',', $col);
         $values = implode(',', $values);
         $query .= "$col) VALUES ($values)";
-        echo $query;
+        // echo $query;
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }

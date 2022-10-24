@@ -25,7 +25,7 @@ username.oninput=(e)=>{
     }
     else {
     
-        if(e.target.value.match(/^[a-z_. A-Z]/) )
+        if(e.target.value.match(/^[a-zA-Z]/) )
         {
             e.target.className="form-control is-valid"
             if(email.value.match(/^[a-z._A-Z0-9]+@+[a-z]+.+["com"|"net"]/))
