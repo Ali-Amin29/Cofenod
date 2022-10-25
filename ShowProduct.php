@@ -26,8 +26,33 @@ $products=DB::getAll('products');
     <div class="alert alert-primary text-center mt-5" role="alert">
         <h1> All Having Products </h1>
     </div>
-    <div class="container mt-5">
-        <div class="row">
+
+    <div class="row">
+        <div class="col-4">
+            <?php
+                    if(!empty($_REQUEST['id'])) {
+                        $id=$_REQUEST['id'];
+                        $product=DB::getOne('products','ID',$id);
+                        // var_dump($user);
+                ?>
+
+            <form method="post" class="mb-3" action="./EditProduct.php" id='EditProduct'>
+                <input name='pid' type='hidden' value='<?php echo $product['ID']?>'>
+                <input type='text' name='pname' value='<?php echo $product['name_prod']?>'>
+                <input name='pprice' type='number' value='<?php echo $product['price']?>'>
+                <input name='ptype' type='text' value='<?php echo $product['type']?>'>
+
+                <button type="submit" class="btn btn-success" name="submit" onclick="insert()">
+                    Submit
+                </button>
+            </form>
+
+            <?php
+                    }
+                    ?>
+        </div>
+
+        <div class="col-8">
             <table class="table text-center">
                 <thead>
                     <tr>
@@ -59,29 +84,11 @@ $products=DB::getAll('products');
                     <?php endforeach?>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <?php
-    if(!empty($_REQUEST['id'])) {
-        $id=$_REQUEST['id'];
-        $product=DB::getOne('products','ID',$id);
-        // var_dump($user);
-   ?>
-    <div class="container text-center">
-        <form method="post" action="./EditProduct.php" id='EditProduct'>
-            <input name='pid' type='hidden' value='<?php echo $product['ID']?>'>
-            <input type='text' name='pname' value='<?php echo $product['name_prod']?>'>
-            <input name='pprice' type='number' value='<?php echo $product['price']?>'>
-            <input name='ptype' type='text' value='<?php echo $product['type']?>'>
 
-            <button type="submit" class="btn btn-success" name="submit" onclick="insert()">
-                Submit
-            </button>
-        </form>
+        </div>
+
     </div>
-    <?php
-     }
-    ?>
+
     <script>
     var EditProduct = document.getElementById('EditProduct');
 

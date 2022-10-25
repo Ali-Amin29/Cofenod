@@ -14,6 +14,9 @@ require('DB.php');
 </head>
 
 <body>
+    <div class="alert alert-primary text-center mt-5" role="alert">
+        <h1> Add User By Admin </h1>
+    </div>
     <div class="container mt-5">
         <form class="row g-3 needs-validation text-center" enctype="multipart/form-data" method="post" name='AddUser'
             id='addUserForm' action="adduser.php">
@@ -89,7 +92,7 @@ require('DB.php');
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit" name="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
             </div>
         </form>
     </div>
