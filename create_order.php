@@ -20,7 +20,53 @@ $orders = DB::getAll('orders');
     <title>Document</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arail, sans-serif;
+        }
+
+        /* Formatting search box */
+        .search-box {
+            width: 300px;
+            position: relative;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .search-box input[type="text"] {
+            height: 32px;
+            padding: 5px 10px;
+            border: 1px solid #CCCCCC;
+            font-size: 14px;
+        }
+
+        .result {
+            position: absolute;
+            z-index: 999;
+            top: 100%;
+            left: 0;
+            background: white;
+        }
+
+        .search-box input[type="text"],
+        .result {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Formatting result items */
+        .result p {
+            margin: 0;
+            padding: 7px 10px;
+            border-top: none;
+        }
+
+        .result p:hover {
+            /* background: #f2f2f2; */
+        }
+    </style>
 </head>
+
 
 <body onload="load()">
 
@@ -51,14 +97,12 @@ $orders = DB::getAll('orders');
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <div class="d-flex search-box" role="search">
+                    <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search">
+                    <div class="result border shadow"></div>
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
@@ -78,8 +122,8 @@ $orders = DB::getAll('orders');
                                         <input type="text" hidden value="<?php echo $product['price'] ?>" id="price">
                                         <input class="form-control w-50 totalquantity" value="1" id="<?php echo $product['price'] ?>" name="quantity_<?php echo $id ?>" type="number">
                                         <!-- <a href="add_product.php?id=<?php echo $id ?>"> -->
-                                        <img id="img" src="images/delete.png" alt="">
-                                        <!-- </a> -->
+                                        <a href="session.php?id_delete=<?php echo $product['ID'] ?>"><img id="img" src="images/delete.png" alt="">
+                                        </a>
                                     </div>
                         <?php
                                 }
@@ -180,7 +224,33 @@ $orders = DB::getAll('orders');
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('.search-box input[type="search"]').on("keyup input", function() {
+                /* Get input value on change */
+                var inputVal = $(this).val();
 
+                var resultDropdown = $(this).siblings(".result");
+                if (inputVal.length) {
+                    $.get("search.php", {
+                        term: inputVal
+                    }).done(function(data) {
+                        resultDropdown.html(data);
+                        console.log(resultDropdown);
+                    });
+                } else {
+                    resultDropdown.empty();
+                }
+            });
+
+            // Set search input value on click of result item
+            $(document).on("click", ".result p", function() {
+                $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+                $(this).parent(".result").empty();
+            });
+        });
+    </script>
     <script>
         var images = document.getElementById('img');
         var input = document.getElementById('input');
@@ -191,7 +261,7 @@ $orders = DB::getAll('orders');
         var price = document.querySelectorAll('#price');
 
 
-       const load = function() {
+        const load = function() {
             let sum = 0;
             for (let i = 0; i < totalquantity.length; i++) {
                 const arr = [];
@@ -201,7 +271,9 @@ $orders = DB::getAll('orders');
                     sum += arr[index];
                 }
             }
-            totalprice.innerHTML = sum;
+            if (sum == 0) {} else {
+                totalprice.innerHTML = sum;
+            }
         }
 
         for (let j = 0; j < totalquantity.length; j++) {
@@ -223,7 +295,6 @@ $orders = DB::getAll('orders');
             input.value = select.value
             document.cookie = "user_id=" + input.value
         }
-
     </script>
 </body>
 

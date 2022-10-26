@@ -4,7 +4,7 @@ DB::connect('mysql', 'localhost', 'cafe_node', 'root', '');
 
 session_start();
 
-if ($_COOKIE = null) {
+if ($_COOKIE != null) {
     $user_id = $_COOKIE['user_id'];
     $count = count($_SESSION["id"]);
 
