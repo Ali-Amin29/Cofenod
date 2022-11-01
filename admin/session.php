@@ -1,33 +1,26 @@
 <?php
 session_start();
 
-// if ($_REQUEST['id_delete'] != null) {
-$id_delete = $_REQUEST['id_delete'];
-// }
-
-// if ($_REQUEST['id'] != null) {
-$id = $_REQUEST['id'];
-// }
-
-var_dump($_SESSION['id']);
-
-if ($_SESSION['id'] == '') {
-    session_unset();
-    $_SESSION['id'] =  array();
-} else {
-  
-        for ($i = 0; $i < count($_SESSION['id']); $i++) {
-      
-            if ($_SESSION['id'][$i] == $id_delete) {
-                unset($_SESSION['id'][$i]);
-            }
-        
+if (isset($_REQUEST['id_delete'])) {
+    $id_delete = $_REQUEST['id_delete'];
+    for ($i = 0; $i < count($_SESSION['id']); $i++) {
+        if ($_SESSION['id'][$i] == $id_delete) {
+            unset($_SESSION['id'][$i]);
         }
-    
+    }
 }
 
-$_SESSION['id'][] = $id;
-// array_push($_SESSION['id'], $id);
 
-// session_unset(); 
+if (isset($_REQUEST['id'])) {
+    $id = $_REQUEST['id'];
+}
+
+
+if ($_SESSION['id'] == '') {
+    unset($_SESSION['id']);
+    $_SESSION['id'] =  array();
+} 
+
+$_SESSION['id'][] = $id;
+
 header('location: create_order.php');

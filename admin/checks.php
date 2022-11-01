@@ -87,7 +87,6 @@ if (isset($_REQUEST['from'])) {
     <!-- <link rel="stylesheet" href="../user/img/Annotation 2022-10-30 010946.png"> -->
     <style>
     body {
-
         background-image: url("../user/img/Annotation 2022-10-30 010946.png");
         background-repeat: no-repeat;
         background-size: cover;
@@ -194,7 +193,6 @@ if (isset($_REQUEST['from'])) {
                                     }
                                 }
                             } ?>
-
                     <?php
                             $quantity = DB::getReq(['SUM(order_products.amount) as quantity'], 'order_products', 'order_products.order_ID', $order['ID_ORDER']);
                             ?>

@@ -113,7 +113,9 @@ date_default_timezone_set("Egypt");
                                     <td>
                                         <h5>Expected Arrival Time <?php echo $new_time ?> </h5>
                                     </td>
-                            <?php }
+                            <?php }else{
+                                
+                            }
                             } ?>
                             <?php
                             $totalPrice = DB::join(
