@@ -8,7 +8,6 @@
      <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'> -->
      <!-- <script src="https://kit.fontawesome.com/621136387c.js" crossorigin="anonymous"></script> -->
      <link rel="stylesheet" href="css/login.css">
-
  </head>
 
  <body>
@@ -47,7 +46,8 @@
                  <form id='register' class='input-group-register' action="controller/Register.php"
                      enctype="multipart/form-data" method="post">
 
-                     <input name="name" type='text' class='input-field' placeholder='Full Name' required>
+                     <input name="name" type='text' class='input-field' placeholder='Full Name' required
+                         id="validationCustom01">
                      <!-- email -->
                      <input name="email" type='email' class='input-field' placeholder='Email Id' required>
                      <!-- room -->

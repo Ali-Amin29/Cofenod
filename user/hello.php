@@ -7,10 +7,12 @@
     <title>Hello Cofenode</title>
     <link rel="stylesheet" href="./css/register.css">
     <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./css/style1.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/621136387c.js" crossorigin="anonymous"></script>
 
 </head>
@@ -18,8 +20,8 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <h1 class="logo"><a href="system_login.php" style="color:white ;"><i class="fas fa-mug-hot"></i></a></h1>
-            <div class="navbar-menu">
+            <h1 class="logo"><a href="hello.php" style="color:white ;"><i class="fas fa-mug-hot"></i></a></h1>
+            <div class="navbar-menu  me-5">
                 <a href="system_login.php">sign in</a>
                 <a href="system_login.php">Login</a>
             </div>

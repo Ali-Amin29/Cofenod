@@ -41,7 +41,7 @@ date_default_timezone_set("Egypt");
 
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <h1 class="logo"><a href="system_login.php" style="color:white ;"><i class="fas fa-mug-hot"></i></a></h1>
+            <h1 class="logo"><a href="index.php" style="color:white ;"><i class="fas fa-mug-hot"></i></a></h1>
             <div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -63,19 +63,20 @@ date_default_timezone_set("Egypt");
                 <label class="form-label" for="date">To:</label>
                 <input type="date" class="form-control" style="width: 77%;" id="date" name="to">
             </div>
-            <button type="submit" class="btn btn-primary m-5">Submit</button>
+            <button type="submit" class="btn btn-success m-5">Submit</button>
         </div>
     </form>
 
 
     <div class="container" style="width: 77%;">
-        <table class="table">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Order Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Total Price</th>
+                    <th scope="col">Arrival Time</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -99,6 +100,8 @@ date_default_timezone_set("Egypt");
                         <?php
                                 if (date("Y-m-d") == $order_date) {
                                     if ($interval->format("%h") <= 2 && $interval->format("%i") < 20) {
+                                        $new_time = strtotime("$date1[1], +20 minute");
+                                        $new_time = date('H:i:s', $new_time);
                                         echo 'out for deliver';
                                     } else {
                                         echo 'Done';
@@ -106,6 +109,7 @@ date_default_timezone_set("Egypt");
                                 }
                                 ?>
                     </td>
+
                     <?php
                             $totalPrice = DB::join(
                                 'sum(products.price*order_products.amount) as totalPrice',
@@ -113,22 +117,36 @@ date_default_timezone_set("Egypt");
                                 ['products.ID' => 'order_products.product_ID', ' order_products.order_ID' => $order['ID_ORDER']]
                             );
                             ?>
-                    <td><?php echo $totalPrice[0]['totalPrice'] ?></td>
+                    <td><?php echo $totalPrice[0]['totalPrice']." LE"; ?></td>
+                    <?php
+                            if (date("Y-m-d") == $order_date) {
+                                if ($interval->format("%h") <= 2 && $interval->format("%i") < 20) {
+                            ?>
+                    <td>
+
+                        <p>Expected Arrival Time <?php echo $new_time ?> </p>
+                    </td>
+                    <?php }else{
+                                echo '<td>'.'Arrived'.'</td>';
+                            }
+                            } ?>
                     <td> <?php
                                     if (date("Y-m-d") == $order_date) {
                                         if ($interval->format("%h") <= 2 && $interval->format("%i") < 20) {
                                     ?>
-                        <a href="myorderdata.php?id=<?php echo $order['ID_ORDER'] ?>"><button>Cancel</button></a>
+                        <a href="myorderdata.php?id=<?php echo $order['ID_ORDER'] ?>"><button
+                                class="btn btn-danger">Cancel</button></a>
                         <?php
                                         }
                                     }
                                 ?>
                     </td>
 
+
                 </tr>
 
                 <?php }
-                } else{
+                } else {
                     ?>
                 <td></td>
                 <td></td>

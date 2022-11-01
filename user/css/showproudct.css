@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     font-family: Raleway;
@@ -38,16 +39,18 @@ html, body {
 .btn {
     text-align: center;
     vertical-align: middle;
-    padding: .67em .67em;
+    padding: 0.67em 0.67em;
     cursor: pointer;
 }
+
+
 
 
 .btn-primary {
     color: white;
     /* background-color: #56CCF2; */
     border: none;
-    border-radius: .3em;
+    border-radius: 0.3em;
     font-weight: bold;
 }
 
@@ -157,6 +160,7 @@ html, body {
     margin: 40px auto 80px auto;
     font-size: 1.5em;
 }
+
 .cart-total .btn-dark:hover{
     background-color: black;
     color: #eee;

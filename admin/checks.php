@@ -112,6 +112,9 @@ if (isset($_REQUEST['from'])) {
                         <a class="nav-link active" aria-current="page" href="../user/index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./create_order.php">Create Order</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./Cofenod-aliGamal/AddProduct.php">Add product</a>
                     </li>
                     <li class="nav-item">
@@ -161,12 +164,12 @@ if (isset($_REQUEST['from'])) {
         </div>
 
 
-        <button type="submit" class="btn btn-primary m-5">Submit</button>
+        <button type="submit" class="btn btn-success m-5">Submit</button>
     </form>
 
 
     <div class="container">
-        <table class="table">
+        <table class="table table-light table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -212,7 +215,20 @@ if (isset($_REQUEST['from'])) {
                 </tr>
 
                 <?php }
-                } ?>
+                }  else {
+                    ?>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>No Orders Available</td>
+                <td></td>
+                <td></td>
+
+
+
+
+                <?php
+                }?>
             </tbody>
         </table>
     </div>

@@ -89,7 +89,9 @@ session_start();
                 </span>
             </div>
 
-            <button class="btn btn-primary btn-dark" type="submit">Pay now</button>
+            <button class="btn btn-primary btn-dark"
+                style="color:black;margin-left:45%;padding:15px;background-color: #56CCF2;" type="submit">Pay
+                now</button>
         </form>
     </section>
     <script src='js/store.js'></script>

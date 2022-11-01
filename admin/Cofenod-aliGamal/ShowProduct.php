@@ -55,6 +55,9 @@ if($user[0]['role'] != 'admin'){
                         <a class="nav-link active" aria-current="page" href="../../user/index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./../create_order.php">Create Order</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./AddProduct.php">Add product</a>
                     </li>
                     <li class="nav-item">
@@ -91,7 +94,7 @@ if($user[0]['role'] != 'admin'){
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
-                <table class="table text-center">
+                <table class="table table-light table-striped text-center">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

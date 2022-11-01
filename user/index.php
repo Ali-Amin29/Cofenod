@@ -135,9 +135,9 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
             <li><a href="#team"> team </a></li>
             <?php if ($user[0]['role']=='admin'){?>
             <li><a href="../admin/checks.php"> admin </a></li>
-            <?php }else{?>
-            <li><a href="myorders.php"> My Orders </a></li>
             <?php }?>
+            <li><a href="myorders.php"> My Orders </a></li>
+
             <div class="d-flex search-box" id="search_box" role="search">
                 <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search"
                     style="height:40px">
@@ -176,8 +176,8 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
             <div class="body animate__animated animate__fadeInLeft">
                 <h2>time to discover</h2>
                 <h2>coffee house</h2>
-                <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, numquam</P>
-                <p>Lorem ipsum dolor sit amet?</p>
+                <P>I like my coffee with cream and my literature with optimism.</P>
+                <p>Coffee, because adulting is hard..</p>
                 <a class="read" href="">service</a>
                 <a href="">read more</a>
             </div>
@@ -275,7 +275,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
                     <form action="showproudct.php" method="post" class="text-center bg-light mt-3">
                         <input type="hidden" value="" <?php if (!isset($_SESSION['id'])) { ?>>
                         <div class="m-2 p-2 text-center">
-                            <h2>No Orders Yet :(</h2>
+                            <h2>No Orders Yet <i class="fa-solid fa-face-sad-tear"></i></h2>
                         </div>
                         <?php } else { ?>
                         <?php foreach ($products as $product) { ?>
@@ -286,7 +286,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
                             <h2><?php echo $product['type'] ?></h2>
                             <p>Price: <?php echo $product['price'] ?>L.E</p>
                             <input type="text" hidden value="<?php echo $product['price'] ?>" id="price">
-                            <input class="form-control m-auto totalquantity" style="width:15%" value="1"
+                            <input class="form-control m-auto totalquantity" style="width:25%" value="1"
                                 id="<?php echo $product['price'] ?>" name="quantity_<?php echo $id ?>" type="number">
                             <a href="session.php?id_delete=<?php echo $product['ID'] ?>"><img id="img"
                                     src="../admin/images/delete.png" alt="">
@@ -302,7 +302,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
 
                         <h2 id="totalprice"></h2>
                         <div class="text-center">
-                            <button class="btn btn-success" id="butt"> Submit Order</button>
+                            <button class="btn btn-success mb-4" id="butt"> Submit Order</button>
                         </div>
                     </form>
                 </div>
@@ -329,7 +329,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
             </div>
             <div class='team_space'>
                 <div class='team_man'>
-                    <img src='./img/1666891601our-team-2.jpg' alt=''>
+                    <img src='./img/our-team-6.jpg' alt=''>
                     <div class='text'>
                         <h2> Amr </h2>
                         <h4>Manager</h4>
@@ -344,7 +344,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
             </div>
             <div class='team_space'>
                 <div class='team_man'>
-                    <img src='./img/1666891601our-team-2.jpg' alt=''>
+                    <img src='./img/our-team-4.jpg' alt=''>
                     <div class='text'>
                         <h2> Ali </h2>
                         <h4>Bar Man </h4>

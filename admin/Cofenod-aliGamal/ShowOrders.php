@@ -85,6 +85,9 @@ $products=DB::join('orders.ID_order,products.name_prod,orders.ID_user,order_prod
                         <a class="nav-link active" aria-current="page" href="../../user/index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./../create_order.php">Create Order</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./AddProduct.php">Add product</a>
                     </li>
                     <li class="nav-item">
@@ -119,7 +122,7 @@ $products=DB::join('orders.ID_order,products.name_prod,orders.ID_user,order_prod
     </div>
     <div class="container mt-5">
         <div class="row">
-            <table class="table">
+            <table class="table table-light table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

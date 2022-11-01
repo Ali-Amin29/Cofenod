@@ -29,6 +29,19 @@ if($user[0]['role'] != 'admin'){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./create.css">
+    <style>
+    .list-group-item.active {
+
+        color: black !important;
+        background-color: #198754 !important;
+        border-color: #198754 !important;
+    }
+
+    .list-group-item+.list-group-item.active {
+        margin-top: calc(20 * var(--bs-list-group-border-width)) !important;
+
+    }
+    </style>
 </head>
 
 
@@ -46,6 +59,9 @@ if($user[0]['role'] != 'admin'){
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="../user/index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./create_order.php">Create Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./Cofenod-aliGamal/AddUser.php">Add product</a>
@@ -134,7 +150,7 @@ if($user[0]['role'] != 'admin'){
             <br>
             <br>
 
-            <h1 style="color:#003f63;display: inline-block; ">Our Products</h1>
+            <h1 style="color:black;display: inline-block; ">Our Products</h1>
             <div class="list-group d-flex flex-row mb-3" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active " id="list-drinks-list" data-bs-toggle="list"
                     href="#drinks">Drinks</a>
@@ -154,7 +170,7 @@ if($user[0]['role'] != 'admin'){
                                 <h2><?php echo $product['name_prod'] ?></h2>
                                 <h2><?php echo $product['type'] ?></h2>
                                 <p>Price: <?php echo $product['price'] ?>L.E</p>
-                                <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary">
+                                <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-success">
                                         Add</button></a>
                             </div>
                             <?php }
@@ -172,7 +188,7 @@ if($user[0]['role'] != 'admin'){
                                 <h2><?php echo $product['name_prod'] ?></h2>
                                 <h2><?php echo $product['type'] ?></h2>
                                 <p>Price: <?php echo $product['price'] ?>L.E</p>
-                                <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-primary">
+                                <a href="session.php?id=<?php echo $product['ID'] ?>"><button class="btn btn-success">
                                         Add</button></a>
                             </div>
                             <?php }

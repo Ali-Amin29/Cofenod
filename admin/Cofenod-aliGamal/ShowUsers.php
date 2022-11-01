@@ -55,6 +55,9 @@ if($user[0]['role'] != 'admin'){
                         <a class="nav-link active" aria-current="page" href="../../user/index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./../create_order.php">Create Order</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./AddProduct.php">Add product</a>
                     </li>
                     <li class="nav-item">
@@ -89,13 +92,15 @@ if($user[0]['role'] != 'admin'){
     </div>
     <div class="container mt-5">
         <div class="row">
-            <table class="table text-center">
+            <table class="table table-light table-striped text-center">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">UserID</th>
                         <th scope="col">UserName</th>
                         <th scope="col">Email</th>
+                        <th scope="col">role</th>
+
                         <th scope="col">Actions</th>
 
 
@@ -108,6 +113,8 @@ if($user[0]['role'] != 'admin'){
                         <td scope="col"><?php echo $user['ID'] ?></td>
                         <td scope="col"><?php echo $user['name'] ?></td>
                         <td scope="col"><?php echo $user['email'] ?></td>
+                        <td scope="col"><?php echo $user['role'] ?></td>
+
                         <td scope="col">
                             <button type="button" class="btn btn-success" onClick="Edit(<?php echo $user['ID'] ?>)"
                                 name="edit">
@@ -132,6 +139,7 @@ if($user[0]['role'] != 'admin'){
         <form method="post" action="./EditUser.php" id='EditProduct'>
             <input name='id' type='hidden' value='<?php echo $user['ID']?>'>
             <input type='text' name='name' value='<?php echo $user['name']?>'>
+            <input type='text' name='role' value='<?php echo $user['role']?>'>
             <input name='email' type='email' value='<?php echo $user['email']?>' required>
             <button type="submit" class="btn btn-success" name="submit" onclick="insert()">
                 Submit
