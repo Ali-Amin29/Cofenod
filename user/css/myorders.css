@@ -1,0 +1,19 @@
+body{
+    background-image: url(../img/Annotation\ 2022-10-30\ 010946.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav-link{
+    color: white;
+    margin-left: 50%;
+
+}
+.form-control
+{
+    width: 76%;
+}
+.active a{
+    color:wheat;
+    width:100%;
+}
