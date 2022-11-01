@@ -1,6 +1,8 @@
 <?php
+require('DB.php');
+DB::connect('mysql', 'localhost', 'cafe_nod', 'root', '');
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=cafe_node", "root", "");
+    $pdo = DB::connect('mysql', 'localhost', 'cafe_nod', 'root', '');
     // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
@@ -15,10 +17,9 @@ try {
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch()) {
-                // var_dump($row);
                 echo
                 "<div style=text-align:center;margin:25px>" .
-                    "<img src=images/" . $row['image'] . " width=100px style=border-radius:100% ></img>" .
+                    "<img src=../admin/images/" . $row['image'] . " width=100px style=border-radius:100% ></img>" .
                     "<h4> Name: " . $row['name_prod'] . "</h4>" .
                     "<p> Price: " . $row['price'] . "</p>" .
                     "<a href=session.php?id=". $row['ID'] ."><button class=btn btn-primary> Add</button></a>" .

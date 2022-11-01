@@ -1,0 +1,354 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}li{
+    list-style: none;
+}a{
+    text-decoration: none;
+}
+nav{
+ position: fixed;
+width: 100%;
+    display: flex;
+    z-index: 10;
+    justify-content: space-between;
+    
+ 
+
+}nav .logo img{
+    width: 206px;
+    height: 79px;
+    color: #FFF;
+
+}nav .nav{
+    display: flex;
+    padding-right: 100px;
+
+}nav .nav li a{
+    display: block;
+    line-height: 5;
+    width: 100px;
+    height: 70px;
+    text-align: center;
+    color: #FFF;
+    text-transform: uppercase;
+    
+}nav .nav li a.active{
+    color: #C7A17A;
+    border-bottom:2px solid #FFF;
+
+}
+
+nav .nav li a:hover{
+ color: #C7A17A;
+ border-bottom:2px solid #FFF;
+}
+nav .login{
+    padding-top: 10px;
+    color: #FFF;
+    display: flex;
+    
+}nav .login a{
+    display: inline-block;
+    line-height: 2.3;
+    color: #FFF;
+ 
+    
+    padding-right: 25px;  
+}nav .login a:hover{
+    color: #C7A17A;
+}
+nav .login img{
+    line-height: 1;
+    width: 65px;
+    height: 65px;
+    border-radius: 35px;
+}  
+
+/* ******************************** START SLIDER *******************************8 */
+
+.slider{
+    
+    width: 100%;
+    height: 700px;
+    margin-bottom: 10px;
+}.slider .active{
+   
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/Gallery_19-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+
+    align-items: center;
+}.slider .active .body{
+    padding-left: 20px;
+    color: #FFF;
+    
+}.slider .active .body h2{
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}.slider .active .body p{
+    padding-top: 10px;
+    font-size: 20px;
+   
+}.slider .active .body a{
+    display: inline-block;
+    width: 160px;
+    height: 60px;
+    text-align: center;
+    line-height: 2.7;
+    font-size: 20px;
+    margin-top: 10px;  
+     border: 1px solid #FFF;
+    border-radius: 10px;
+    text-transform: capitalize;
+    color: #FFF;
+}.slider .active .body a.read{
+    background-color: #C7A17A;
+    
+}.slider .active .body a:hover{
+    background-color: #C7A17A;
+}
+
+
+.animate__animated.animate__backInDown{
+    --animate-duration: 5s;
+
+
+}
+
+/* ******************************** END SLIDER *******************************8 */
+/* ******************************** START SECTION *******************************8 */
+
+section{
+    width: 100%;
+   
+}.service{
+    width: 97%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}.service .padd{
+    width: 25%;
+    height: 360px;
+    
+    padding: 10px;
+}
+
+.service .cart{
+    width: 100%;
+    height: 340px;
+    border: 1px solid #ddd;
+position: relative;
+}.service .cart img{
+    width: 100%;
+    height: 220px;
+}.service .cart .text{
+    text-align: center;
+    line-height: 1.5;
+    color: #12100C;
+}
+.cart a{
+    display: inline-block;
+    position: absolute;
+    top: 165px;
+    left: 80px;
+    text-align: center;
+    width: 105px;
+    height: 35px;
+    line-height: 2.1;
+   background-color: #FFF;
+    color: black;
+    border-radius: 40px;
+    display: none;
+
+   
+
+}
+
+.cart .show_cart{
+    left:140px;
+}
+
+
+
+
+
+
+.cart #add_cart{
+
+    
+    color: #333;
+    display: none;
+}
+
+.cart a:hover{
+    background-color: black;
+    color: #FFF;
+}
+.ctegory{
+    height: 60px;
+     text-align: center;
+}.ctegory a{
+
+    padding: 10px;
+    font-size: 30px;
+    color: black;
+    line-height: 2;
+    text-transform: capitalize;
+}.ctegory a:hover
+{
+    color: #C7A17A;
+    border-bottom: 2px solid #C7A17A;
+}.ali{
+    width: 100%;
+    height: 70%;
+   
+}
+/* ******************************** END SLIDER *******************************8 */
+
+
+
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 40px;
+    background-color: red;
+    height: 30px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 15px;
+    height: 10px;
+     border-radius: 50%;
+    border: 6px solid #fed;
+    border-color: #fed transparent #fed transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+   /* ******************************** START team *******************************8 */
+
+.our_team
+{
+    width: 100%;
+    margin-bottom: 20px;
+     
+}
+.team{
+    width: 80%;
+  
+    margin: auto;
+     
+    display: flex;
+    flex-wrap: wrap;
+}   
+.team_space
+{
+    width: 33%;
+    height: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+   
+
+}
+
+.team_man{
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ddd;
+}.team_man img{
+    width: 100%;
+    height: 300px;
+}.team_man .text{
+    text-align: center;
+    padding: 5px;
+}.team_man .icon{
+    padding-top: 10px;
+    padding-right:10px;
+    
+}.team_man .icon i{
+    padding: 5px;
+}.team_man .icon i:hover
+{
+    color: #C7A17A;
+}
+
+.scroll{
+  position: fixed;
+  bottom: 4vh;
+  right: 2vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+background-color: #625858;
+text-align: center;
+line-height: 2;
+
+}
+
+.scroll a{
+    display: inline-block;
+    text-align: center;
+    line-height: 2.3;
+    color:#FFF
+}
+.cookies2{
+    display: none;
+    position: fixed;
+   
+    top: 10vh;
+    left: 10vw;
+    width: 50vw;
+    height: 28vw;
+   
+  
+
+}.cookies2 .text{
+
+    width: 60%;
+    height: 60%;
+    background-color: #232323;
+    padding: 20px;
+    float: right;
+    margin-top: 60px;
+    color: #FFF;
+}.cookies2 .text p{
+    
+    padding:20px 0;
+    line-height: 1.4;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}.cookies2 .text h2{
+    color: #FFF;
+  
+}.cookies2 .text button{
+    display: inline-block ;
+width:48%;
+height:40px;
+margin: auto;
+background-color: #EC311E;
+cursor:grab;
+color: #FFF;
+border: 0;
+
+}.cookies2 .text button.one{
+    background-color: #000;
+}
+.cookies2 .text button.one:hover{
+    background-color: #3E9B67;
+}

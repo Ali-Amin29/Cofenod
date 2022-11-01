@@ -1,0 +1,53 @@
+body {
+    font-family: Arail, sans-serif;
+    width: 95%;
+        background-image: url("../user/img/Annotation 2022-10-30 010946.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+img{
+    width: 95%;
+    height: 40%;
+}
+#delete{
+    width: 50px!important;
+}
+.list-group a{
+    width: 8%;
+    margin: 2%;
+}
+/* Formatting search box */
+.search-box {
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.search-box input[type="text"] {
+    height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+
+.result {
+    position: absolute;
+    z-index: 999;
+    top: 100%;
+    left: 0;
+    background: white;
+}
+
+.search-box input[type="text"],
+.result {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Formatting result items */
+.result p {
+    margin: 0;
+    padding: 7px 10px;
+    border-top: none;
+}

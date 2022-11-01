@@ -1,0 +1,87 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;  
+
+}
+ 
+section{
+    position: relative;
+  width: 100%;
+  height: 100%;
+
+  
+}#myVideo {
+    
+     
+    min-width: 100%;
+    height: 90%;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+     
+    
+  }.form{
+  width: 400px;
+   
+  background-color:rgba(0,0,0,0.51);
+  position: absolute;
+  top: 0;
+  color: #FFF;
+  
+  }form{
+    display: block;
+    margin-top: 40px;
+  }.form h2{
+    background-color: #333;
+    text-align: center;
+    height: 50px;
+    line-height: 2;
+  }
+  
+  input,select{
+    width: 100%;
+    position: relative;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: red;
+     border: none;
+     border-bottom: 1px solid #C7A17A;
+     background-color:rgba(0,0,0,0.51);
+     border-radius: 4px;
+    box-sizing: border-box;
+    opacity: 0.3;
+    color: #FFF;
+    font-size: large;
+
+  }input:focus{
+outline: none;
+}
+  
+  input[type=submit] {
+    width: 100%;
+     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #C7A17A;
+    opacity: 1;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #C7A17A;
+  }
+  
+
+  .im{
+    position: relative;
+  } 
+    
+  input:hover{
+    background-color: #C7A17A;
+  }
+
+
