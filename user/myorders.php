@@ -139,6 +139,9 @@ date_default_timezone_set("Egypt");
                         <?php
                                         }
                                     }
+                                    else{
+                                         echo '<td>'.''.'</td>';
+                                    }
                                 ?>
                     </td>
 
@@ -153,7 +156,7 @@ date_default_timezone_set("Egypt");
                 <td></td>
                 <td>No Orders Available</td>
                 <td></td>
-
+                <td></td>
 
 
                 <?php

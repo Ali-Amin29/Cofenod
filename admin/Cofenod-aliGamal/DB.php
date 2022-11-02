@@ -47,7 +47,7 @@ class DB
             }
         }
         $query = substr($query, 0, strlen($query) - 4);
-        
+         
         // echo $query;
         $sql =  DB::$connection->prepare($query);
         $sql->execute();
@@ -121,5 +121,37 @@ if (str_contains($key, 'ID')) {
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
+    static public function join2($required,$table,$conditions)
+    {
+        $query = "SELECT $required";
+        // foreach ($required as $key => $value) {
+        //     $query .= $key.".".$value.",";
+          
+        // };
+        // $query = rtrim($query, ',');
+        $query .=" FROM ";
+        foreach ($table as $value) {
+            $query .= $value.","; 
+        }
+        // echo $query;
+        $query = rtrim($query, ',');
+        $query .= " WHERE ";
+        foreach ($conditions as $key => $value) {
+            if(str_contains($key, 'ID'))
+            {
+                $query .= $key."=".$value. " and ";
+            }
+            else{
+                $query .= $key."="."'$value'". " and ";
+            }
+        }
+        $query = substr($query, 0, strlen($query) - 4);
+         $query .= " ORDER BY `created_at`";
+        // echo $query;
+        $sql =  DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
 ?>

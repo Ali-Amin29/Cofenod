@@ -6,7 +6,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
 if($user[0]['role'] != 'admin'){
     header('location: ../../user/index.php'); 
 }
-$users=DB::join('orders.ID_order,users.ID,users.name',['orders','users'],['users.ID'=>'orders.ID_user']);  
+$users=DB::join2('orders.ID_order,users.ID,users.name',['orders','users'],['users.ID'=>'orders.ID_user']);  
 if(isset($_REQUEST['submit']))
 {
     $id=$_REQUEST['user_id'];

@@ -118,7 +118,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
         border-top: none;
     }
 
-    .result img {}
+
 
     */
     </style>
@@ -126,7 +126,7 @@ $user= DB::getReq(['users'=>'role'],'users','users.ID',$_SESSION['login']);
 
 <body onload="load()">
     <nav>
-        <ul class="logo">
+        <ul class="logo mt-2 ms-5">
             <li><img src="img/logo-dark.webp" alt=""></li>
         </ul>
         <ul class="nav">
