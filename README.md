@@ -1,1 +1,1 @@
-</h1> Cafe Nod Projet </h1>
+</h1 style="color:red;"> Cafe Nod Projet </h1>
